@@ -6,9 +6,13 @@
   "scripts": {
     "start:dev": "nodemon --exec babel-node server",
     "prod:build": "npm run clean && npm run build && npm run start",
-    "start": "node dist/index.js",
+    "start": "pm2 start node dist/index.js",
     "build": "babel server --out-dir dist",
-    "clean": "rm -rf ./build "
+    "clean": "rm -rf ./build ",
+    "test": "nyc mocha --timeout 10000 -r esm --exit",
+    "list:instance": "pm2 list",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "stop:all": "pm2 stop all"
   },
   "author": "ekoinnovationhub",
   "license": "MIT",
@@ -17,20 +21,26 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
+    "pm2": "^4.4.0",
     "swagger-jsdoc": "^4.0.0",
     "swagger-ui-express": "^4.1.4",
     "winston": "^3.3.3",
     "winston-daily-rotate-file": "^4.5.0"
   },
   "devDependencies": {
-    "@babel/runtime": "^7.9.2",
-    "nodemon": "^2.0.4",
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
     "@babel/plugin-transform-runtime": "^7.9.0",
     "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.5.5",
-    "@babel/register": "^7.5.5"
+    "@babel/register": "^7.5.5",
+    "@babel/runtime": "^7.9.2",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "esm": "^3.2.25",
+    "mocha": "^8.0.1",
+    "nodemon": "^2.0.4",
+    "nyc": "^15.1.0"
   }
 }
