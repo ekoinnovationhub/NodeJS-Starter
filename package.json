@@ -1,7 +1,7 @@
 {
-  "name": "startuplagosbackend",
+  "name": "nodestarter",
   "version": "1.0.0",
-  "description": "The backend repo built in nodejs for startup lagos application",
+  "description": "A startup proj for ekoinnovation hub",
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon --exec babel-node server",
