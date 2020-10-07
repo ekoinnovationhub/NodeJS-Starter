@@ -10,7 +10,14 @@ const serverResponse = (req, res, code, data) => {
   logger.info(`${req.originalUrl} - ${req.method} - ${req.ip}
   - ${code} - ${JSON.stringify(data)}
   `);
-  res.status(code).json({ ...data });
+  res.status(code).json({ 
+    OCX_Schema: "v1",
+    OCXType: "Response",
+    OCXComponent: "OCXAccess",
+    OCXPayload: {
+      ...data
+    }
+   });
 }
 
 /**
@@ -19,8 +26,13 @@ const serverResponse = (req, res, code, data) => {
  * @returns {JSON} JSON response with server error details
  */
 const serverError = (res) =>
-  res.status(500).json({
-    error: 'server error, this will be resolved shortly',
-  });
+  res.status(500).json({ 
+    OCX_Schema: "v1",
+    OCXType: "Response",
+    OCXComponent: "OCXAccess",
+    OCXPayload: {
+      message: 'an error occoured will be resolved shortly'
+    }
+   });
   
 export { serverResponse, serverError };
